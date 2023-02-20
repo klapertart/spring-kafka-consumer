@@ -13,10 +13,15 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaMessageConsumer {
 
-//    @KafkaListener(topics = "${spring.kafka.topic}", groupId = "${spring.kafka.group-id}", containerFactory = "stringListenerContainerFactory")
-//    public void receiveMessage(String message){
-//        log.info("### Receive String Message >> {}", message);
-//    }
+    // handle string
+
+    @KafkaListener(topics = "${spring.kafka.topic}", groupId = "${spring.kafka.group-id}", containerFactory = "stringListenerContainerFactory")
+    public void receiveMessage(String message){
+        log.info("### Receive String Message >> {}", message);
+    }
+
+
+    // handle object
 
     @KafkaListener(topics = "${spring.kafka.topic}", groupId = "${spring.kafka.group-id}", containerFactory = "userListenerContainerFactory")
     public void receiveUser(User user){
