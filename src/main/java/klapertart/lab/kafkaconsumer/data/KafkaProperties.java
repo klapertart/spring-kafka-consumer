@@ -18,4 +18,8 @@ public class KafkaProperties {
     private String bootstrapServers;
     private String topic;
     private String groupId;
+    private String autoOffsetResetConfig;
+    private String enableAutoCommitConfig;
+    private String autoCommitIntervalMsConfig;
+    private String trustedPackages;
 }

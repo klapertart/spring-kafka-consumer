@@ -46,10 +46,10 @@ public class KafkaConsumerConfig {
         configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
         configs.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS,StringDeserializer.class);
         configs.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS,JsonDeserializer.class);
-        configs.put(JsonDeserializer.TRUSTED_PACKAGES,"*");
-        configs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,"true");
-        configs.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,"1000");
+        configs.put(JsonDeserializer.TRUSTED_PACKAGES,kafkaProperties.getTrustedPackages());
+        configs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,kafkaProperties.getAutoOffsetResetConfig());
+        configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,kafkaProperties.getEnableAutoCommitConfig());
+        configs.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,kafkaProperties.getAutoCommitIntervalMsConfig());
         return new DefaultKafkaConsumerFactory<>(configs,new StringDeserializer(),new JsonDeserializer<>(User.class,false));
     }
 
