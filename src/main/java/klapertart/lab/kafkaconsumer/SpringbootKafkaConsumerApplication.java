@@ -1,6 +1,6 @@
 package klapertart.lab.kafkaconsumer;
 
-import klapertart.lab.kafkaconsumer.data.KafkaProperties;
+import klapertart.lab.kafkaconsumer.properties.KafkaProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

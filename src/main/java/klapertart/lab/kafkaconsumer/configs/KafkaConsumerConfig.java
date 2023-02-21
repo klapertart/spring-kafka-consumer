@@ -1,6 +1,6 @@
 package klapertart.lab.kafkaconsumer.configs;
 
-import klapertart.lab.kafkaconsumer.data.KafkaProperties;
+import klapertart.lab.kafkaconsumer.properties.KafkaProperties;
 import klapertart.lab.kafkaconsumer.data.User;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -38,7 +38,7 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, User> objectConsumerFactory(){
+    public ConsumerFactory<String, User> userConsumerFactory(){
         Map<String,Object> configs = new HashMap<>();
         configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         configs.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getGroupId());
@@ -46,10 +46,10 @@ public class KafkaConsumerConfig {
         configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
         configs.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS,StringDeserializer.class);
         configs.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS,JsonDeserializer.class);
-        configs.put(JsonDeserializer.TRUSTED_PACKAGES,kafkaProperties.getTrustedPackages());
-        configs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,kafkaProperties.getAutoOffsetResetConfig());
-        configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,kafkaProperties.getEnableAutoCommitConfig());
-        configs.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,kafkaProperties.getAutoCommitIntervalMsConfig());
+//        configs.put(JsonDeserializer.TRUSTED_PACKAGES,kafkaProperties.getTrustedPackages());
+//        configs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,kafkaProperties.getAutoOffsetReset());
+//        configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,kafkaProperties.getEnableAutoCommitConfig());
+//        configs.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,kafkaProperties.getAutoCommitIntervalMsConfig());
         return new DefaultKafkaConsumerFactory<>(configs,new StringDeserializer(),new JsonDeserializer<>(User.class,false));
     }
 
@@ -63,7 +63,7 @@ public class KafkaConsumerConfig {
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String,User> userListenerContainerFactory(){
         ConcurrentKafkaListenerContainerFactory<String,User> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(objectConsumerFactory());
+        factory.setConsumerFactory(userConsumerFactory());
         return factory;
     }
 }
