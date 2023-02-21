@@ -15,6 +15,7 @@ public class KafkaMessageConsumer {
 
     // handle string
 
+
     @KafkaListener(topics = "${spring.kafka.topic}", groupId = "${spring.kafka.group-id}", containerFactory = "stringListenerContainerFactory")
     public void receiveMessage(String message){
         log.info("### Receive String Message >> {}", message);
@@ -22,7 +23,6 @@ public class KafkaMessageConsumer {
 
 
     // handle object
-
     /*
     @KafkaListener(topics = "${spring.kafka.topic}", groupId = "${spring.kafka.group-id}", containerFactory = "userListenerContainerFactory")
     public void receiveUser(User user){
@@ -30,5 +30,6 @@ public class KafkaMessageConsumer {
         log.info("### Receive User First Name >> {}", user.getFirstName());
         log.info("### Receive User Last Name >> {}", user.getLastName());
     }
-    */
+     */
+
 }

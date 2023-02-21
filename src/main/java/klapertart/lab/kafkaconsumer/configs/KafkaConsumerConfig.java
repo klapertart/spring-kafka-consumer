@@ -35,12 +35,18 @@ public class KafkaConsumerConfig {
     @Autowired
     private SslProperties sslProperties;
 
+    // handle string
+
+
     @Bean
     public ConsumerFactory<String,String> stringConsumerFactory(){
         Map<String,Object> configs = new HashMap<>();
         configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class);
+        configs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,kafkaProperties.getConsumer().getAutoOffsetReset());
+        configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,kafkaProperties.getEnableAutoCommitConfig());
+        configs.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,kafkaProperties.getAutoCommitIntervalMsConfig());
 
         if(sslProperties.isEnabled()) {
             configs.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
@@ -64,6 +70,9 @@ public class KafkaConsumerConfig {
         return factory;
     }
 
+
+
+    // handle object
 
     /*
     @Bean
@@ -101,7 +110,5 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(userConsumerFactory());
         return factory;
     }
-    */
-
-
+     */
 }
