@@ -10,14 +10,15 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since 21/02/23
  */
 
-@Slf4j
 @SpringBootTest
-public class KafkaPropertiesTest {
+@Slf4j
+public class SslPropertiesTest {
+
     @Autowired
-    private KafkaProperties kafkaProperties;
+    private SslProperties sslProperties;
 
     @Test
     void testValueOfProperties() {
-        log.info("### KAFKA PROPERTIES : {}",kafkaProperties.toString());
+        log.info("### SSL PROPERTIES : {}",sslProperties.toString());
     }
 }

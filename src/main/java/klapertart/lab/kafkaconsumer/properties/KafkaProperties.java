@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
 @Data
 public class KafkaProperties {
     private String bootstrapServers;
-    private String topic;
     private String groupId;
+    private String topic;
     private ConsumerProperties consumer;
     private String enableAutoCommitConfig;
     private String autoCommitIntervalMsConfig;
